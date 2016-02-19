@@ -1,0 +1,16 @@
+PODS:
+  - AddressBookKit (0.1.0)
+
+DEPENDENCIES:
+  - AddressBookKit (from `../`)
+
+EXTERNAL SOURCES:
+  AddressBookKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AddressBookKit: e33454d114923dd05878b54d6960f0c4aeaa9c79
+
+PODFILE CHECKSUM: 5d040bbf451d9ad777addf49e633c62c1cceb56f
+
+COCOAPODS: 1.0.0.beta.3

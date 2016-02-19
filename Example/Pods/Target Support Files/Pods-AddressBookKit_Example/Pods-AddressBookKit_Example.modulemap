@@ -1,0 +1,6 @@
+framework module Pods_AddressBookKit_Example {
+  umbrella header "Pods-AddressBookKit_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

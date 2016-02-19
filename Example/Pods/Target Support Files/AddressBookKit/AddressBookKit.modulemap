@@ -1,0 +1,6 @@
+framework module AddressBookKit {
+  umbrella header "AddressBookKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
