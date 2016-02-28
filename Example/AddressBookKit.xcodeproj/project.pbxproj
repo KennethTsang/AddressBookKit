@@ -16,6 +16,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		9F2CF94A1C773A2D005F521E /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2CF9491C773A2D005F521E /* MenuTableViewController.swift */; };
 		9F9E9CFD1C773BDB0013078E /* GroupedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E9CFC1C773BDB0013078E /* GroupedTableViewController.swift */; };
+		9FDEA0931C820B0B0033B427 /* PlainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDEA0921C820B0B0033B427 /* PlainTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		9F258EBE5493F4C7D218B1D4 /* Pods-AddressBookKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddressBookKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AddressBookKit_Example/Pods-AddressBookKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9F2CF9491C773A2D005F521E /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		9F9E9CFC1C773BDB0013078E /* GroupedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedTableViewController.swift; sourceTree = "<group>"; };
+		9FDEA0921C820B0B0033B427 /* PlainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainTableViewController.swift; sourceTree = "<group>"; };
 		C845EE9457D7F5894833A196 /* Pods_AddressBookKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddressBookKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB883A240CB313888002B3AC /* Pods-AddressBookKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddressBookKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AddressBookKit_Tests/Pods-AddressBookKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF65FFC209DC2CD169EC1D62 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				9F2CF9491C773A2D005F521E /* MenuTableViewController.swift */,
 				9F9E9CFC1C773BDB0013078E /* GroupedTableViewController.swift */,
+				9FDEA0921C820B0B0033B427 /* PlainTableViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FDEA0931C820B0B0033B427 /* PlainTableViewController.swift in Sources */,
 				9F2CF94A1C773A2D005F521E /* MenuTableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				9F9E9CFD1C773BDB0013078E /* GroupedTableViewController.swift in Sources */,

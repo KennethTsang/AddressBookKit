@@ -16,7 +16,7 @@
 		599B13C2A92ECA461446509BB8AF52A2 /* Pods-AddressBookKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BE7AD65175A583FAE8CD6F10E82D8132 /* Pods-AddressBookKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EFE2A04EB49C06E643D719E8C1422D3 /* AddressBookKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 290126715996F1F90BE6552152BAF8A6 /* AddressBookKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9923747E761BC88E30D58DF2E0FE0028 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54E7E0262D1C5144DE99B0CEFEED421 /* AddressBook.framework */; };
-		9FAC75641C7B137500F217A4 /* AddressBookRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAC75631C7B137500F217A4 /* AddressBookRecord.swift */; };
+		9FAC75641C7B137500F217A4 /* AddressBookDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAC75631C7B137500F217A4 /* AddressBookDataType.swift */; };
 		A2FAECAC9E1086914A17D2C9A5B57969 /* Pods-AddressBookKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 386868C88B8286BC609781A8869B556C /* Pods-AddressBookKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B49252F170ACCAD9B8B823134A7C2AED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A2D5FE9D6068BE36E46807008C73B4 /* Foundation.framework */; };
 		BCBA66F74D4E95AC7ED9AC367040909D /* AddressBookKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07ED49B3C361DA9B614AE1C969D25337 /* AddressBookKit.bundle */; };
@@ -60,7 +60,7 @@
 		78C5302CA05256EEABAE4F050F0A2066 /* Pods-AddressBookKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AddressBookKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		80DE4D05F24193E764A3157E191AAA54 /* Pods-AddressBookKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-AddressBookKit_Example.modulemap"; sourceTree = "<group>"; };
 		86946B314320459F40B8568AB9CBC05F /* AddressBookKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AddressBookKit-prefix.pch"; sourceTree = "<group>"; };
-		9FAC75631C7B137500F217A4 /* AddressBookRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookRecord.swift; sourceTree = "<group>"; };
+		9FAC75631C7B137500F217A4 /* AddressBookDataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookDataType.swift; sourceTree = "<group>"; };
 		9FE9CDAD986C0926E69663353DC5A6E7 /* Pods-AddressBookKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AddressBookKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		A04B8E03F271E7B0ADD8FC2D60E90349 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABF99929C2583CEC9611553A58117B60 /* Pods_AddressBookKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddressBookKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				3D8BC02EAB7A05E5C09BDE95333216FB /* AddressBookKit.swift */,
-				9FAC75631C7B137500F217A4 /* AddressBookRecord.swift */,
+				9FAC75631C7B137500F217A4 /* AddressBookDataType.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 			files = (
 				2853A0450EFB51ECE5D455C705CBF8F3 /* AddressBookKit-dummy.m in Sources */,
 				2597C709FE548AB08E3F68A2CDCF2362 /* AddressBookKit.swift in Sources */,
-				9FAC75641C7B137500F217A4 /* AddressBookRecord.swift in Sources */,
+				9FAC75641C7B137500F217A4 /* AddressBookDataType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

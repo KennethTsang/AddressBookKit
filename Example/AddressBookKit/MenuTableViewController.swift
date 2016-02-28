@@ -9,20 +9,20 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController {
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
-        case 0:
-            performSegueWithIdentifier("GroupSegue", sender: "PhoneNumbers")
-        case 1:
-            performSegueWithIdentifier("GroupSegue", sender: "Emails")
-        default:
-            break
-        }
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? GroupedTableViewController {
-            vc.recordType = sender as! String
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "PlainPhoneNumbersSegue":
+                if let vc = segue.destinationViewController as? PlainTableViewController {
+                    vc.contactType = .PhoneNumber
+                }
+            case "PlainEmailsSegue":
+                if let vc = segue.destinationViewController as? PlainTableViewController {
+                    vc.contactType = .Email
+                }
+            default:
+                break
+            }
         }
     }
 }

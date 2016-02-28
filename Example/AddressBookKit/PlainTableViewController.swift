@@ -1,19 +1,20 @@
 //
-//  ResultTableViewController.swift
+//  PlainTableViewController.swift
 //  AddressBookKit
 //
-//  Created by Kenneth on 19/2/2016.
+//  Created by Kenneth on 28/2/2016.
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import AddressBookKit
 
-class GroupedTableViewController: UITableViewController {
-    private var groupedContacts = [GroupedContact]()
+class PlainTableViewController: UITableViewController {
+    var contactType = AddressBookContactType.PhoneNumber
+    private var plainContacts = [PlainContact]()
     
     override func viewDidLoad() {
-        title = "Grouped Contacts"
+        title = "Plain Contacts"
         AddressBookKit.requestPermission { [weak self] (success) -> Void in
             if success {
                 self?.loadAddressBook()
@@ -25,7 +26,7 @@ class GroupedTableViewController: UITableViewController {
     
     private func loadAddressBook() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            self.groupedContacts = AddressBookKit.groupedContacts([.PhoneNumber, .Email])
+            self.plainContacts = AddressBookKit.plainContacts(self.contactType)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
@@ -54,27 +55,18 @@ class GroupedTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return groupedContacts.count
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let contact = groupedContacts[section]
-        return contact.phoneNumbers.count + contact.emails.count
-    }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return groupedContacts[section].fullName
+        return plainContacts.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        let contact = groupedContacts[indexPath.section]
-        
-        if indexPath.row < contact.phoneNumbers.count {
-            cell.textLabel?.text = "📞 " + contact.phoneNumbers[indexPath.row]
-        } else {
-            cell.textLabel?.text = "✉️ " + contact.emails[indexPath.row - contact.phoneNumbers.count]
-        }
+        let contact = plainContacts[indexPath.row]
+        cell.textLabel?.text = contact.fullName
+        cell.detailTextLabel?.text = contact.value
         return cell
     }
 }
