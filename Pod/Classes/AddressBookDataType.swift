@@ -37,6 +37,10 @@ public struct GroupedContact {
     public var phoneNumbers = [String]()
     public var emails = [String]()
     
+    var isEmpty: Bool {
+        return phoneNumbers.isEmpty && emails.isEmpty
+    }
+    
     var plainPhoneNumbers: [PlainContact] {
         return phoneNumbers.flatMap {
             PlainContact(firstName: firstName, middleName: middleName, lastName: lastName, value: $0)

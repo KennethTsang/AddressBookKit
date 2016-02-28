@@ -20,32 +20,57 @@ pod "AddressBookKit"
 
 or
 
-Copy `AddressBookKit.swift` and `AddressBookRecord.swift` into your project.
+Copy `AddressBookKit.swift` and `AddressBookDataType.swift` into your project.
 
 ## Usage
+
+Ask for Contacts permission
 
 ```swift
 AddressBookKit.requestPermission { [weak self] (success) -> Void in
 	if success {
-		let allPhoneNumbers = AddressBookKit.allRecords([.PhoneNumber])
-		let allEmails = AddressBookKit.allRecords([.Email])
-		let allPhonesAndEmails = AddressBookKit.allRecords([.PhoneNumber, .Email])
+		// Success, read address book here...
+		// Example:
+		let phoneNumbers = AddressBookKit.plainContacts(.PhoneNumber)
 	} else {
 		// No Permission
 	}
 }
 ```
 
-`AddressBookKit.allRecords` will returns an array of `AddressBookRecord`
+`AddressBookKit.plainContacts()` will returns an array of `PlainContact`. Example:
 
-## Contents of AddressBookRecord
+```swift
+let phoneNumbers = AddressBookKit.plainContacts(.PhoneNumber)
+let emails = AddressBookKit.plainContacts(.Email)
+```
+
+`AddressBookKit.groupedContacts()` will returns an array of `GroupedContact`. Example:
+
+```swift
+let phoneNumbers = AddressBookKit.groupedContacts([.PhoneNumber])
+let emails = AddressBookKit.groupedContacts([.Email])
+let phonesAndEmails = AddressBookKit.groupedContacts([.PhoneNumber, .Email])
+```
+
+## What is PlainContact?
 
 Varible | Type | Description
 --- | --- | ---
 *firstName* | String? | First Name
 *middleName* | String? | Middle Name
 *lastName* | String? | Last Name
-*fullName* | String? | Full Name
+*fullName* | String | Full Name
+*value* | [String] | A String representing phone number or email
+
+## What is GroupedContact?
+
+Varible | Type | Description
+--- | --- | ---
+*firstName* | String? | First Name
+*middleName* | String? | Middle Name
+*lastName* | String? | Last Name
+*fullName* | String | Full Name
 *phoneNumbers* | [String] | An array of phone numbers in this contact
 *emails* | [String] | An array of Emails in this contact
 

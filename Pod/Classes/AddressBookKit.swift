@@ -18,67 +18,45 @@ public struct AddressBookKit {
 
         guard let addressBookRef = ABAddressBookCreateWithOptions(nil, nil)?.takeRetainedValue() else { return recordsArray }
         let allPeople = ABAddressBookCopyArrayOfAllPeople(addressBookRef).takeRetainedValue() as [ABRecordRef]
-        
-        for abRecord in allPeople {
+
+        for recordRef in allPeople {
             // Full Name
             var addressBookRecord = GroupedContact()
-            addressBookRecord.firstName = ABRecordCopyValue(abRecord, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
-            addressBookRecord.middleName = ABRecordCopyValue(abRecord, kABPersonMiddleNameProperty)?.takeRetainedValue() as? String
-            addressBookRecord.lastName = ABRecordCopyValue(abRecord, kABPersonLastNameProperty)?.takeRetainedValue() as? String
+            addressBookRecord.firstName = ABRecordCopyValue(recordRef, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
+            addressBookRecord.middleName = ABRecordCopyValue(recordRef, kABPersonMiddleNameProperty)?.takeRetainedValue() as? String
+            addressBookRecord.lastName = ABRecordCopyValue(recordRef, kABPersonLastNameProperty)?.takeRetainedValue() as? String
+            
+            // Skip this record is no name
             if addressBookRecord.fullName.isEmpty { continue }
-
+            
+            // Phone Numbers
             if types.contains(AddressBookContactType.PhoneNumber) {
-                if let phoneNumbers = self.addressBookMultiValue(abRecord, propertyID: kABPersonPhoneProperty) {
-                    addressBookRecord.phoneNumbers.appendContentsOf(phoneNumbers)
+                if let values = self.addressBookMultiValue(recordRef, propertyID: kABPersonPhoneProperty) {
+                    addressBookRecord.phoneNumbers.appendContentsOf(values)
                 }
             }
             
+            // Emails
             if types.contains(AddressBookContactType.Email) {
-                if let emails = self.addressBookMultiValue(abRecord, propertyID: kABPersonEmailProperty) {
-                    addressBookRecord.emails.appendContentsOf(emails)
+                if let values = self.addressBookMultiValue(recordRef, propertyID: kABPersonEmailProperty) {
+                    addressBookRecord.emails.appendContentsOf(values)
                 }
             }
-
-//            if types.contains(AddressBookContactType.PhoneNumber) {
-//                if let phoneNumRef: ABMultiValueRef = ABRecordCopyValue(abRecord, kABPersonPhoneProperty)?.takeRetainedValue() {
-//                    let phoneNumCount = ABMultiValueGetCount(phoneNumRef)
-//                    for i in 0..<phoneNumCount {
-//                        if let phone = ABMultiValueCopyValueAtIndex(phoneNumRef, i)?.takeRetainedValue() as? String {
-//                            addressBookRecord.phoneNumbers.append(phone)
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            if types.contains(AddressBookContactType.Email) {
-//                if let emailRef: ABMultiValueRef = ABRecordCopyValue(abRecord, kABPersonEmailProperty)?.takeRetainedValue() {
-//                    let emailCount = ABMultiValueGetCount(emailRef)
-//                    for i in 0..<emailCount {
-//                        if let email = ABMultiValueCopyValueAtIndex(emailRef, i)?.takeRetainedValue() as? String {
-//                            addressBookRecord.emails.append(email)
-//                        }
-//                    }
-//                }
-//            }
             
-            if addressBookRecord.phoneNumbers.count > 0 || addressBookRecord.emails.count > 0 {
-                recordsArray.append(addressBookRecord)
-            }
+            // Skip this record if phone numbers and emails are empty
+            if addressBookRecord.isEmpty { continue }
+            
+            // Append the record
+            recordsArray.append(addressBookRecord)
         }
         
+        // Return sorted array
         return recordsArray.sort {
-            return $0.fullName < $1.fullName
+            $0.fullName < $1.fullName
         }
     }
     
-    private static func addressBookMultiValue(recordRef: ABRecordRef, propertyID: ABPropertyID) -> [String]? {
-        guard let multiValueRef: ABMultiValueRef = ABRecordCopyValue(recordRef, propertyID)?.takeRetainedValue() else { return nil }
-        let count = ABMultiValueGetCount(multiValueRef)
-        return Array(0..<count).flatMap {
-                ABMultiValueCopyValueAtIndex(multiValueRef, $0)?.takeRetainedValue() as? String
-        }
-    }
-    
+    //MARK: Plain Contacts
     public static func plainContacts(type: AddressBookContactType) -> [PlainContact] {
         switch type {
         case .PhoneNumber:
@@ -93,6 +71,15 @@ public struct AddressBookKit {
         
     }
     
+    //MARK: Extract multiple values (phone numbers, emails) from ABRecordRef
+    private static func addressBookMultiValue(recordRef: ABRecordRef, propertyID: ABPropertyID) -> [String]? {
+        guard let multiValueRef: ABMultiValueRef = ABRecordCopyValue(recordRef, propertyID)?.takeRetainedValue() else { return nil }
+        let count = ABMultiValueGetCount(multiValueRef)
+        return Array(0..<count).flatMap {
+            ABMultiValueCopyValueAtIndex(multiValueRef, $0)?.takeRetainedValue() as? String
+        }
+    }
+
     //MARK: Request Permission
     public static func requestPermission(completion: ((success: Bool)->Void)?) {
         switch ABAddressBookGetAuthorizationStatus() {
