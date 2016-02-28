@@ -61,7 +61,7 @@ Varible | Type | Description
 *middleName* | String? | Middle Name
 *lastName* | String? | Last Name
 *fullName* | String | Full Name
-*value* | [String] | A String representing phone number or email
+*value* | String | A String representing phone number or email
 
 ## What is GroupedContact?
 
